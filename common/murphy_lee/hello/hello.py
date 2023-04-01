@@ -6,12 +6,12 @@ class MurphyHello(commands.Cog):
         self.bot = bot
         self._last_member = None
 
-  @nextcord.slash_command(name="hello", description="Says hello!")
-  async def hello(self, ctx, *, member: nextcord.Member = None):
+  @nextcord.slash_command(name="hello0", description="Says hello!")
+  async def hello(self, interaction: nextcord.Interaction, member: nextcord.Member = None):
       """Says hello"""
-      member = member or ctx.author
+      member = member or interaction.user  # Use interaction.user instead of ctx.author
       if self._last_member is None or self._last_member.id != member.id:
-          await ctx.send(f'Hello {member.name}~')
+          await interaction.response.send_message(f'Hello {member.name}~')  # Use interaction.response.send_message
       else:
-          await ctx.send(f'Hello {member.name}... This feels familiar.')
+          await interaction.response.send_message(f'Hello {member.name}... This feels familiar.')  # Use interaction.response.send_message
       self._last_member = member
