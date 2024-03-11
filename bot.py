@@ -1,5 +1,8 @@
 import discord
+import os
 import responses
+from dotenv import load_dotenv
+from typing import Final
 
 async def send_message(message, user_message, is_private):
     try:
@@ -9,7 +12,8 @@ async def send_message(message, user_message, is_private):
         print(e)
 
 def run_discord_bot():
-    TOKEN = 'MTE3MjcwMjgwMjM1MTUwNTUwOQ.GMljzC.4SBpEAUSVydQccC_lO6uMnv0uJf2Q0ZWsJ52qU'
+    load_dotenv()
+    TOKEN: Final[str] = os.getenv('DISCORD_TOKEN')
     intents = discord.Intents.default()
     intents.messages = True
     intents.message_content = True
