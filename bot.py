@@ -1,23 +1,20 @@
-import discord
+from discord import Intents, Client, Message
 import os
 import responses
 from dotenv import load_dotenv
 from typing import Final
 
-async def send_message(message, user_message, is_private):
-    try:
-        response = responses.handle_response(user_message)
-        await message.author.send(response) if is_private else await message.channel.send(response)
-    except Exception as e:
-        print(e)
 
-def run_discord_bot():
+def run_discord_bot() -> None:
+    # LOADING TOKEN
     load_dotenv()
     TOKEN: Final[str] = os.getenv('DISCORD_TOKEN')
-    intents = discord.Intents.default()
+
+    # BOT SETUP
+    intents: Intents = Intents.default()
     intents.messages = True
     intents.message_content = True
-    client = discord.Client(intents=intents)
+    client: Client = Client(intents=intents)
 
     @client.event
     async def on_ready():
@@ -27,9 +24,7 @@ def run_discord_bot():
     async def on_message(message):
         if message.author == client.user:
             return
-        username = str(message.author)
-        user_message = str(message.content)
-        channel = str(message.channel)
+        username, user_message, channel = str(message.author), str(message.content), str(message.channel)
 
         print(f'{username} said "{user_message}" ({channel})')
 
@@ -40,3 +35,10 @@ def run_discord_bot():
             await send_message(message, user_message, False)
 
     client.run(TOKEN)
+
+async def send_message(message: Message, user_message: str, is_private: bool) -> None:
+    try:
+        response = responses.handle_response(user_message)
+        await message.author.send(response) if is_private else await message.channel.send(response)
+    except Exception as e:
+        print(e)
