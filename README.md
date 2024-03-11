@@ -13,4 +13,11 @@
   </p>
 </div>
 
+## Prerequisites
+
+- Python 3.6-3.10
+- A Discord account
+
+## Getting Started
+
 python3.9 -m venv venv
