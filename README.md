@@ -1,9 +1,9 @@
 <div align="center">
   <a href="https://discord.com" target="_blank">
-      <img width="70" src="images/discord.png">
+      <img width="70" src="images/discord.svg">
   </a>
   <a href="https://amacss.org/" target="_blank">
-      <img width="70" src="images/amacss.png">
+      <img width="70" src="images/amacss.svg">
   </a>
 
   <h1>AMACSS Discord Bot</h1>
