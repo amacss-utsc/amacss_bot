@@ -9,15 +9,20 @@
   <h1>AMACSS Discord Bot</h1>
 
   <p>
-    This is the repository for the AMACSS open source Discord bot.
+    This is the repository for the AMACSS open source Discord bot. By contributing to this bot, you can learn about open-source contribution while developing your Python skills.
   </p>
 </div>
 
 ## Prerequisites
 
+- Git
 - Python 3.6-3.10
 - A Discord account
 
 ## Getting Started
 
-python3.9 -m venv venv
+Create a virtual environment:
+
+```
+python3 -m venv venv
+```
