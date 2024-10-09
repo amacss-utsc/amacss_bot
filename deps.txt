@@ -1,3 +1,2 @@
 python-dotenv
-nextcord
-setuptools
+discord.py

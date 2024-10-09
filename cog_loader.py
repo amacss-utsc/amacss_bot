@@ -1,7 +1,7 @@
-from common.murphy_lee.hello.hello import MurphyHello
-from exec.murphy_lee.channel_admin.channel_admin import MurphyChannelAdmin
+import os
 
 # MUST ADD YOUR COGS HERE FOR YOUR COMMANDS TO WORK
-def cog_loader(bot):
-  bot.add_cog(MurphyHello(bot))
-  bot.add_cog(MurphyChannelAdmin(bot))
+async def cog_loader(bot):
+    for filename in os.listdir('./cogs'):
+        if filename.endswith('.py'):
+            await bot.load_extension(f'cogs.{filename[:-3]}')
