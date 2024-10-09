@@ -1,7 +1,11 @@
 import os
+import asyncio
 
-# MUST ADD YOUR COGS HERE FOR YOUR COMMANDS TO WORK
 async def cog_loader(bot):
-    for filename in os.listdir('./cogs'):
-        if filename.endswith('.py'):
-            await bot.load_extension(f'cogs.{filename[:-3]}')
+    # MUST ADD YOUR COGS HERE FOR YOUR COMMANDS TO WORK
+    cogs = [
+        "cogs.generic.ping",
+    ]
+    load_tasks = [bot.load_extension(cog) for cog in cogs]
+    
+    await asyncio.gather(*load_tasks)

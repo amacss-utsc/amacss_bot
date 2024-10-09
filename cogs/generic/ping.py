@@ -9,9 +9,9 @@ class Ping(commands.Cog):
     async def on_ready(self):
         print('Ping cog is ready')
 
-    @commands.command(name='ping')
+    @commands.command(name='murphy-ping')
     async def ping(self, ctx):
-        await ctx.send('Pong!')
+        await ctx.send('Murphy says Pong!')
 
 async def setup(bot):
     await bot.add_cog(Ping(bot))
