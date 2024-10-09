@@ -1,9 +1,9 @@
 <div align="center">
   <a href="https://discord.com" target="_blank">
-      <img width="70" src="images/discord.svg">
+      <img width="70" src="docs/images/discord.svg">
   </a>
   <a href="https://amacss.org/" target="_blank">
-      <img width="70" src="images/amacss.svg">
+      <img width="70" src="docs/images/amacss.svg">
   </a>
 
   <h1>AMACSS Discord Bot</h1>
@@ -27,11 +27,11 @@
 
 (2) On the Applications dashboard page, click "New Application" and give a name of your choice:
 
-![alt text](/images/instructions1.png)
+![alt text](/docs/images/instructions1.png)
 
 (3) Navigate to the "Bot" tab, and in the token section, click "Reset Token". You should see a new token:
 
-![alt text](/images/instructions2.png)
+![alt text](/docs/images/instructions2.png)
 
 (4) Copy the token and store it for future use.
 
@@ -104,15 +104,15 @@ To test out our new features, we will want to create our own server so we can ad
 
 (2) On the <a href="https://discord.com/developers/applications">Discord Developer Portal</a>, get the installation link and set the install settings as follows:
 
-![alt text](images/instructions3.png)
+![alt text](docs/images/instructions3.png)
 
 (3) Paste the install link into a browser, and add it to your server:
 
-![alt text](images/instructions4.png)
+![alt text](docs/images/instructions4.png)
 
 (4) If you completed "(6) Run the Bot" from the previous section, the bot should appear to be online in your server:
 
-![alt text](images/instructions5.png)
+![alt text](docs/images/instructions5.png)
 
 Now you can try out the bots commands and test your own creations!
 

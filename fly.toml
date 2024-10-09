@@ -1,7 +1,0 @@
-# fly.toml app configuration file generated for amacss-bot on 2024-05-07T02:07:38Z
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
-
-app = 'amacss-bot'
-primary_region = 'ewr'
