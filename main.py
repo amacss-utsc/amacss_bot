@@ -21,6 +21,8 @@ async def main():
     @bot.event
     async def on_ready():
         print(f'We have logged in as {bot.user}')
+
+        await bot.tree.sync()
     
     # Load cogs
     await cog_loader(bot)
