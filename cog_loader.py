@@ -5,6 +5,7 @@ async def cog_loader(bot):
     # MUST ADD YOUR COGS HERE FOR YOUR COMMANDS TO WORK
     cogs = [
         "cogs.generic.ping",
+        "cogs.games.economy"
     ]
     load_tasks = [bot.load_extension(cog) for cog in cogs]
     

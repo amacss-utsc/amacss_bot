@@ -6,3 +6,4 @@ include
 pyvenv.cfg
 venv
 .DS_Store
+database.db

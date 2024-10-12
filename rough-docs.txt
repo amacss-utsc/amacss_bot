@@ -1,0 +1,19 @@
+alembic for migrations
+
+Need to set DATABASE_URL in .env
+
+```
+alembic revision --autogenerate -m "Create economy tables"
+alembic upgrade head
+```
+
+When creating a SQLAlchemy model, needs to be imported in alembic/env.py
+Also needs to be added to the cog_loader
+
+Put suggestions for new commands/features
+- Affirmations
+- Roasts
+- Add hunting/other economy features
+- Practice question generator (command would take course code as an argument)
+
+Add instructions for creating commands that utilize 3rd party libs (link page to get API key, etc)
