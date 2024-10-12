@@ -1,8 +1,8 @@
 """Create economy tables
 
-Revision ID: d65875cd89da
+Revision ID: 4f5ab82f23d3
 Revises: 
-Create Date: 2024-10-09 22:04:04.517707
+Create Date: 2024-10-10 15:24:31.174808
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'd65875cd89da'
+revision: str = '4f5ab82f23d3'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -23,6 +23,7 @@ def upgrade() -> None:
     op.create_table('economy_player',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('discord_id', sa.String(), nullable=False),
+    sa.Column('discord_name', sa.String(), nullable=False),
     sa.Column('balance', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('discord_id')
