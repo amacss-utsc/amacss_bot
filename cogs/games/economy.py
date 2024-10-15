@@ -26,7 +26,7 @@ class Economy(commands.Cog):
     async def on_ready(self):
         print('Economy cog is ready')
 
-    @app_commands.command(name='inventory')
+    @app_commands.command(name='inventory', description='View your inventory')
     async def inventory(self, interaction: discord.Interaction):
         try:
             player = session.query(EconomyPlayer).filter_by(discord_id=str(interaction.user.id)).first()
@@ -67,7 +67,7 @@ class Economy(commands.Cog):
             print(e)
             await interaction.response.send_message(f"An error occurred.")
 
-    @app_commands.command(name='fish')
+    @app_commands.command(name='fish', description='Put your rod in and see what happens!')
     async def fish(self, interaction: discord.Interaction):
         try:
             item_type = "FISHING_ITEM"
@@ -98,7 +98,7 @@ class Economy(commands.Cog):
             print(e)
             await interaction.response.send_message(f"An error occurred.")
 
-    @app_commands.command(name="sell")
+    @app_commands.command(name="sell", description="Sell an item from your inventory")
     async def sell(self, interaction: discord.Interaction, item_name: str, quantity: int):
         try:
             item_name = item_name.lower()

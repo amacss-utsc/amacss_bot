@@ -10,7 +10,7 @@ class Ping(commands.Cog):
     async def on_ready(self):
         print('Ping cog is ready')
 
-    @app_commands.command(name='ping')
+    @app_commands.command(name='ping', description='Ping the bot')
     async def ping(self, interaction: discord.Interaction):
         await interaction.response.send_message("Pong!")
 
