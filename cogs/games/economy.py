@@ -140,5 +140,34 @@ class Economy(commands.Cog):
             print(e)
             await interaction.response.send_message("An error occurred while processing your sale.")
 
+
+    @app_commands.command(name='richest', description='List the top 5 richest players in terms of fishing money')
+    async def richest(self, interaction: discord.Interaction):
+        try:
+            top_players = session.query(EconomyPlayer).order_by(EconomyPlayer.balance.desc()).limit(5).all()
+
+            if not top_players:
+                await interaction.response.send_message("No players found.")
+                return
+
+            embed = discord.Embed(
+                title="Top 5 Richest Players 🎣💰",
+                description="The wealthiest fishers in the game!",
+                color=discord.Color.gold(),
+                timestamp=discord.utils.utcnow()
+            )
+
+            for index, player in enumerate(top_players, start=1):
+                embed.add_field(
+                    name=f"{index}. {player.discord_name}",
+                    value=f"💰 Balance: {player.balance} coins",
+                    inline=False
+                )
+
+            await interaction.response.send_message(embed=embed)
+        except Exception as e:
+            print(e)
+            await interaction.response.send_message("An error occurred while fetching the richest players.")
+
 async def setup(bot):
     await bot.add_cog(Economy(bot))

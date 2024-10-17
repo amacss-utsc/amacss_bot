@@ -16,10 +16,9 @@
 ## Prerequisites
 
 - Git
-- Python 3.6-3.10
+- Python 3.8+
 - Pip
 - A Discord account
-
 
 ## Discord Developer Portal
 
@@ -38,6 +37,7 @@
 ## Setting up the Project
 
 <b>(1) Clone the repository:</b>
+
 ```
 git clone git@github.com:amacss-utsc/amacss_bot.git
 cd amacss_bot
@@ -66,16 +66,19 @@ Note 1: If "python" doesn't work for the command above, try "python3"
 Note 2: Please name your virtual environment "venv" (as done above) - if you decide to use a different name, add it to .gitignore
 
 <b>(4) Activate your venv:</b>
+
 ```
 source venv/bin/activate
 ```
 
 Note: To deactivate your venv, use the command:
+
 ```
 deactivate
 ```
 
 <b>(5) Install necessary packages:</b>
+
 ```
 pip install -r deps.txt
 ```
