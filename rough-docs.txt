@@ -17,3 +17,9 @@ Put suggestions for new commands/features
 - Practice question generator (command would take course code as an argument)
 
 Add instructions for creating commands that utilize 3rd party libs (link page to get API key, etc)
+
+Privileged intents (add to docs)
+
+only free third party libs allowed, if implementing something that requires an additional API key specify this in the pull request with a link showing where to get it
+
+go through all boilerplate needed to setup a command/cog
