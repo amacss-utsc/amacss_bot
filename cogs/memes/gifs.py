@@ -17,15 +17,6 @@ class Gifs(commands.Cog):
     async def lie(self, interaction: discord.Interaction):
         await interaction.response.send_message(self.LIE_GIF)
 
-    # Non-slash command, which lets you reply to a message with the lie GIF (slash commands can't be used as replies)
-    @commands.command(name='lie', help='If they capping CALL EM OUT 🗣️')
-    async def lie(self, ctx):
-        if ctx.message.reference:
-            original_message = await ctx.channel.fetch_message(ctx.message.reference.message_id)
-            await original_message.reply(self.LIE_GIF, mention_author=True)
-        else:
-            await ctx.send(self.LIE_GIF)
-
     @app_commands.command(name='truth-or-lie', description='The ultimate test of honesty')
     @app_commands.describe(prompt="Ask a question to test the truth!")
     async def truth_or_lie(self, interaction: discord.Interaction, prompt: str):
