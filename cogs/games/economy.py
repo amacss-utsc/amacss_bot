@@ -16,7 +16,7 @@ class Economy(commands.Cog):
         "seal": ("Seal", "🦭", 0.08, 250, "Epic (1/12)"),
         "lobster": ("Lobster", "🦞", 0.06, 500, "Epic (1/17)"),
         "dolphin": ("Dolphin", "🐬", 0.05, 1000, "Legendary (1/20)"),
-        "shark": ("Shark", "🦈", 0.01, 5000, "Legendary (1/50)")
+        "shark": ("Shark", "🦈", 0.01, 5000, "Legendary (1/100)")
     }
 
     def __init__(self, bot):
