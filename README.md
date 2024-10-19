@@ -28,6 +28,7 @@
 4. [Adding Bot To Local Server](#adding-bot-to-local-server)
 5. [Creating Commands](#creating-commands)
 6. [Submitting a Contribution](#submitting-a-contribution)
+7. [Ideas](#ideas)
 
 ## Discord Developer Portal
 
@@ -106,7 +107,7 @@ source venv/bin/activate
 Note: For windows devices, the command might differ. You typically just enter the path of the `activate` script that is within your `venv` folder. For me, it's:
 
 ```
-venv/bin/activate     # I've also seen venv/Scripts/activate
+./venv/bin/activate     # I've also seen ./venv/Scripts/activate
 ```
 
 Note 2: To deactivate your venv, use the command:
@@ -172,7 +173,7 @@ Now you can try out the bots commands and test your own creations!
 
 `discord.py` uses [Cogs](https://discordpy.readthedocs.io/en/stable/ext/commands/cogs.html) to group related commands together within Python classes. There are 2 options for adding a command:
 
-(1) Your new command can be added to an existing cog
+<b>(a) Your new command can be added to an existing cog</b>
 
 For example, if adding a `/hunt` command, you can add a `hunt` function to the Economy cog (`/cogs/games/economy.py`) since it's similar to `/fish` and other commands related to the economy feature. 
 
@@ -183,24 +184,123 @@ This would look like the following:
 
 class Economy(commands.Cog):
     ...
-    @app_commands.command(name='huny', description='Hunt for food!')
+    @app_commands.command(name='hunt', description='Hunt for food!')
     async def hunt(self, interaction: discord.Interaction):
       # Your logic here
 ```
 
 
-(2) You need to create a new cog to place the command
+<b>(b) You need to create a new cog to place the command</b>
 
-TODO
+If you're creating a completely new type of command, you'll need to create a new file under `cogs/[CATEGORY]/[COG_NAME].py`. In this example, we'll create a simple `/ping` command. The steps are as followed:
+
+(1) Create your cog:
+
+```python
+# cogs/generic/ping.py
+import discord
+from discord.ext import commands
+from discord import app_commands
+
+class Ping(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        print('Ping cog is ready')'
+
+    # YOUR COMMAND(S) HERE
+  
+async def setup(bot):
+    await bot.add_cog(Ping(bot))
+```
+
+The `on_ready` function will tell us that we've successfully loaded the cog when we try and start the bot. The setup function is used by our bot to lead all the commands into Discord. Read the documentation for more info.
+
+(2) Navigate to `cog_loader.py`, and add the `module path` to your cog inside the `cogs` array. This is typically the relative path to your cog, but with `.` instead of `/` and no `.py` file extension. In our case, it's `cogs.generic.ping`, so we add the following:
+
+```python
+async def cog_loader(bot):
+    # MUST ADD YOUR COGS HERE FOR YOUR COMMANDS TO WORK
+    cogs = [
+      ...
+      "cogs.generic.ping",
+    ]
+    ...
+```
 
 Refer to the [documentation](https://discordpy.readthedocs.io/en/stable/index.html) to learn things like sending a message back to the user, what `discord.Interaction` is, sending embeds, etc.
 
+Note: Discord.py doesn't have <i>Hot Module Reloading</i>, so whenever you make a change you will need to stop your bot (Ctrl-C) and restart with `python main.py`.
+
 <b>Creating commands that interact with a database:</b>
+
+This bot uses [SQLAlchemy](https://www.sqlalchemy.org/) as an ORM to interact with our `sqlite` database. If you require an additional DB table for your command, you will need to do the following:
+
+(1) Make a <i>model</i> representing that table. For example, for our economy game we have created the following 2 tables in `models/economy.py`:
+
+```python
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
+from .base import Base
+
+class EconomyPlayer(Base):
+    __tablename__ = 'economy_player'
+
+    id = Column(Integer, primary_key=True)
+    discord_id = Column(String, nullable=False, unique=True)
+    discord_name = Column(String, nullable=False)
+    balance = Column(Integer, default=0)
+    inventory = relationship('Inventory', back_populates='player', cascade='all, delete-orphan')
+
+class Inventory(Base):
+    __tablename__ = 'economy_inventory'
+
+    id = Column(Integer, primary_key=True)
+    player_id = Column(Integer, ForeignKey('economy_player.id'))
+    item_name = Column(String, nullable=False)
+    item_type = Column(String, nullable=False)
+    quantity = Column(Integer, default=1)
+    player = relationship('EconomyPlayer', back_populates='inventory')
+```
+
+(2) Import your new classes into `models/__init__.py`:
+```python
+# models/__init__.py
+...
+from .economy import EconomyPlayer, Inventory
+...
+```
+
+(3) Import your new classes into `alembic/env.py`:
+```python
+# alembic/env.py
+...
+from models.economy import EconomyPlayer, Inventory
+...
+```
+
+(4) Run `alembic revision --autogenerate -m [DESCRIPTION]` to create a migration, which will sync your database with your new schema. For example, we ran `alembic revision --autogenerate -m "Create economy tables"` to create the economy tables.
+
+(5) Run `alembic upgrade head` to run the latest migration.
+
+(6) Put your logic in your command to interact with your database using SQLAlchemy. `cogs/games/economy.py` is a good example showing the various things you can do.
+
+Note: You can use [DB Browser](https://sqlitebrowser.org/) as a tool to view your `database.db` file that you should see in your root folder. This will help you verify that your migrations are working, and also that your data is being inserted correctly as you work on your command.
 
 <b>Creating commands that require an API key:</b>
 
-Note: Any 3rd party library utilized must be free (eg; cannot use the OpenAI API)
+If utilizing a 3rd-party library that requires an API key, put the link to where you can create the API key in your pull request.
+
+Note: Any 3rd-party library utilized must be free (eg; cannot use the OpenAI API)
+
+Note 2: If you utilize any library installed through `pip` that wasn't already in `deps.txt`, please add it to `deps.txt`
 
 ## Submitting a Contribution
 
+[TODO]
 
+## Ideas
+
+[TODO]
