@@ -19,6 +19,7 @@
 - Python 3.8+
 - Pip
 - A Discord account
+- An IDE/Text Editor, such as VS Code (to A08 students - don't use Wing)
 
 ## Table of Contents
 
@@ -29,6 +30,7 @@
 5. [Creating Commands](#creating-commands)
 6. [Submitting a Contribution](#submitting-a-contribution)
 7. [Ideas](#ideas)
+8. [Questions](#questions)
 
 ## Discord Developer Portal
 
@@ -147,7 +149,10 @@ You should see an output command similar to the following (the bot name may diff
 We have logged in as AMACSS Bot (Dev)#3613
 ```
 
-Note: If you get issues
+Note: If you get issues related to SSL certificate verification failure, here are some relevant threads:
+- Windows: https://github.com/Rapptz/discord.py/issues/4159#issuecomment-640107584
+- Mac: https://github.com/Rapptz/discord.py/issues/4159#issuecomment-727220480
+- Personally, on Windows, I run the bot through WSL 2. To install, run `wsl --install`, then run `wsl` in this project directory. Delete your `venv` folder and start from step (4) again.
 
 ## Adding Bot To Local Server
 
@@ -295,24 +300,54 @@ If utilizing a 3rd-party library that requires an API key, put the link to where
 
 Note: Any 3rd-party library utilized must be free (eg; cannot use the OpenAI API)
 
-Note 2: If you utilize any library installed through `pip` that wasn't already in `deps.txt`, please add it to `deps.txt`
+Note 2: If you utilize any library installed through `pip` that wasn't already in `deps.txt`, please add it to `deps.txt`.
 
 ## Submitting a Contribution
 
-[TODO]
+(1) Make sure all your changes are on your remote repository:
+
+```
+git add .
+git commit -m "my changes"    # Replace with a more descriptive message
+git push
+```
+
+(2) Navigate to the AMACSS [repository](https://github.com/amacss-utsc/amacss_bot) and click the `Pull Requests` tab.
+
+(3) Click `New pull request`
+
+(4) Click the link that says `compare across forks`
+
+![alt text](docs/images/instructions10.png)
+
+(5) Ensure the `base repository` is `amacss-utsc/amacss_bot`, the `head repository` is your forked repository, and both branches are `dev`.
+
+![alt text](docs/images/instructions11.png)
+
+(6) Fill in an appropriate title and description, and submit the pull request.
+
+Note: You can see an example [here](https://github.com/amacss-utsc/amacss_bot/pull/1) of what your pull request title and description should look like.
+
+(7) Click the gear beside `Reviewers` and request a review from `murphylee10`. Your changes will be reviewed and merged into the AMACSS bot source code if satisfactory, and you'll be labeled as a contributor!
+
+![alt text](docs/images/instructions12.png)
 
 ## Ideas
 
 `/roast`
 - Accepts a user as an argument
-- When called, would load a txt file of roasts, select one at random, and direct it at the user
+- When called, would load roasts from a text file, select one at random, and direct it at the user
 
-`affirm`
-- Loads a txt file of positive affirmations and selects one at random
+`/affirm`
+- Loads list of positive affirmations from a text file and selects one at random
 
-`hunting`, `digging`, ...
+`/hunting`, `/digging`, ...
 - We currently have a fishing system, add to the `Economy` cog to support hunting, digging, or any other features that you'd like.
 
 `/practice-uoft`
 - Accepts a course code as an argument
 - Returns a practice question related to the course
+
+## Questions
+
+Lastly, if you have any questions, please email murphy.lee@mail.utoronto.ca
