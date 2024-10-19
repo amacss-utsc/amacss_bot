@@ -303,4 +303,16 @@ Note 2: If you utilize any library installed through `pip` that wasn't already i
 
 ## Ideas
 
-[TODO]
+`/roast`
+- Accepts a user as an argument
+- When called, would load a txt file of roasts, select one at random, and direct it at the user
+
+`affirm`
+- Loads a txt file of positive affirmations and selects one at random
+
+`hunting`, `digging`, ...
+- We currently have a fishing system, add to the `Economy` cog to support hunting, digging, or any other features that you'd like.
+
+`/practice-uoft`
+- Accepts a course code as an argument
+- Returns a practice question related to the course
