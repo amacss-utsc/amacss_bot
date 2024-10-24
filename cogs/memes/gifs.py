@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 import random
+import os
 
 class Gifs(commands.Cog):
     LIE_GIF = "https://tenor.com/view/lie-lie-detector-cap-you-are-lying-stop-lying-gif-12198388917433403789"
@@ -23,6 +24,23 @@ class Gifs(commands.Cog):
         response_gif = self.TRUTH_GIF if random.choice([True, False]) else self.LIE_GIF
         await interaction.response.send_message(f'**"{prompt}":**')
         await interaction.followup.send(response_gif)
+
+    @app_commands.command(name='sad', description='When it has been a long day')
+    async def brainrot(self, interaction: discord.Interaction):
+        try:
+            # load sad gifs from the text file
+            file_path = os.path.join(os.path.dirname(__file__), 'sad.txt')
+            with open(file_path, 'r') as file:
+                sad_gifs = file.readlines()
+            
+            # strip newline characters + choose random sad gif
+            random_sad_gif = random.choice([gif.strip() for gif in sad_gifs])
+            await interaction.response.send_message(random_sad_gif)
+        except FileNotFoundError:
+            # Sad gif file not found :OO
+            await interaction.response.send_message("Try again later ¯\\_(ツ)_/¯")
+        
+
 
 async def setup(bot):
     await bot.add_cog(Gifs(bot))
