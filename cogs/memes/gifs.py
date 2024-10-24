@@ -26,7 +26,7 @@ class Gifs(commands.Cog):
         await interaction.followup.send(response_gif)
 
     @app_commands.command(name='sad', description='When it has been a long day')
-    async def brainrot(self, interaction: discord.Interaction):
+    async def sad(self, interaction: discord.Interaction):
         try:
             # load sad gifs from the text file
             file_path = os.path.join(os.path.dirname(__file__), 'sad.txt')
