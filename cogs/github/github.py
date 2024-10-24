@@ -11,7 +11,7 @@ class Github(commands.Cog):
     async def on_ready(self):
         print('Github cog is ready')
 
-    @app_commands.command(name='pull', description='Gets open pull requests from the GitHub repository')
+    @app_commands.command(name='pull-requests', description='Gets open pull requests from the GitHub repository')
     async def pull(self, interaction: discord.Interaction):
         """
         Fetches the number of open pull requests from the GitHub repository
