@@ -7,6 +7,7 @@ async def cog_loader(bot):
         "cogs.generic.ping",
         "cogs.games.economy",
         "cogs.memes.gifs",
+        "cogs.github.github",
         "cogs.messages.message"
     ]
     load_tasks = [bot.load_extension(cog) for cog in cogs]

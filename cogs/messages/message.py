@@ -13,7 +13,6 @@ class Message(commands.Cog):
     async def on_ready(self):
         print('Message cog is ready')
 
-    # YOUR COMMAND(S) HERE
     @app_commands.command(name='affirm', description='Get a positive affirmation')
     async def affirm(self, interaction: discord.Interaction):
         # Load affirmations from the text file
